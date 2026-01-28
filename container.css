@@ -203,6 +203,7 @@ body {
   justify-content: space-evenly;
   text-decoration: none;
   z-index: 10;
+  transform: translate3d(0, 0, 0);
 }
 
 .hanu-folder-window {
@@ -241,6 +242,7 @@ body {
   justify-content: space-evenly;
   text-decoration: none;
   z-index: 1;
+  transform: translate3d(0, 0, 0);
 }
 
 .study-folder-window {
