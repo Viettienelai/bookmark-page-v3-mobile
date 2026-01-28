@@ -1,0 +1,271 @@
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+body {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  font-family: 'Rubik', sans-serif;
+  z-index: 0;
+  overflow-x: hidden;
+}
+
+#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #F0F4F9;
+  z-index: 1;
+}
+
+#bookmark-container {
+  position: absolute;
+  width: 340px;
+  top: 50px;
+  padding: 100px 0 50px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 10;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  corner-shape: squircle;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background: white;
+}
+
+#container-1 {
+  z-index: 5;
+}
+
+#container-2 {
+  z-index: 4;
+}
+
+#container-3 {
+  z-index: 3;
+}
+
+#container-4 {
+  z-index: 2;
+}
+
+#container-5 {
+  z-index: 1;
+}
+
+.bookmark-item a {
+  position: relative;
+  width: 77.5px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  text-decoration: none;
+  z-index: 1;
+}
+
+.bookmark-avatar {
+  position: relative;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bookmark-avatar svg {
+  width: 45px;
+  height: 45px;
+}
+
+.bookmark-name {
+  position: relative;
+  font-size: 11px;
+  font-weight: 600;
+  color: #323232;
+  white-space: nowrap;
+}
+
+#google-bookmark {
+  position: relative;
+  width: 77.5px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  text-decoration: none;
+  z-index: 10;
+}
+
+/* Style mặc định cho folder */
+#folder {
+  position: relative;
+  width: 45px;
+  height: 45px;
+  box-sizing: border-box;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.folder-name {
+  position: relative;
+  font-size: 11px;
+  font-weight: 600;
+  color: #323232;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.folder-grid {
+  /* Tăng width lên 315px để chứa đủ 3 ô 95px và padding */
+  width: 315px; 
+  
+  display: grid;
+  
+  /* Cố định cứng 3 cột, mỗi cột 95px */
+  grid-template-columns: repeat(3, 95px);
+  
+  /* Chiều cao hàng là 95px */
+  grid-auto-rows: 95px; 
+  
+  /* Reset gap về 0 */
+  gap: 0;
+  
+  padding: 15px;
+  
+  /* Căn giữa nội dung bên trong ô 95x95 */
+  justify-items: center; 
+  align-items: center;
+  
+  box-sizing: border-box;
+}
+
+.google-folder-window {
+  position: relative;
+  left: -18.75px;
+  width: 315px;
+  height: 315px;
+  border-radius: 50px;
+  corner-shape: squircle;
+  box-sizing: border-box;
+  background-color: white;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+  z-index: 100;
+  transform: scale(calc(45/315));
+  transform-origin: calc(125%/18) 0%;
+  pointer-events: none;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1);
+}
+
+
+.google-folder-window.active {
+  height: 405px;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+
+#hanu-bookmark {
+  position: relative;
+  width: 77.5px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  text-decoration: none;
+  z-index: 10;
+}
+
+.hanu-folder-window {
+  position: absolute;
+  top: 0;
+  left: -251.25px;
+  width: 315px;
+  height: 315px;
+  background-color: white;
+  border-radius: 50px;
+  corner-shape: squircle;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  transform: scale(calc(45/315));
+  transform-origin: calc(1675%/18) 0%;
+  pointer-events: none;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1);
+}
+
+
+.hanu-folder-window.active {
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+
+
+#study-bookmark {
+  position: relative;
+  width: 77.5px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  text-decoration: none;
+  z-index: 1;
+}
+
+.study-folder-window {
+  position: relative;
+  left: -18.75px;
+  width: 315px;
+  height: 300px;
+  background-color: white;
+  border-radius: 50px;
+  corner-shape: squircle;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  transform: scale(calc(45/315));
+  transform-origin: calc(125%/18) 0%;
+  pointer-events: none;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1);
+}
+
+.study-folder-window.active {
+  height: 220px;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+#study-bookmark:has(.study-folder-window.active) {
+  z-index: 100;
+}

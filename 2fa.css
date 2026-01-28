@@ -1,0 +1,450 @@
+:root {
+    --primary: #2196F3;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* --- MAIN CONTAINER --- */
+#two-fa {
+    position: absolute;
+    top: 0;
+    left: 80px;
+    z-index: 9999;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: white;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1);
+}
+
+#two-fa.expand {
+    width: 340px;
+    height: 480px;
+    left: 0px;
+    border-radius: 50px;
+    corner-shape: squircle;
+    cursor: default;
+}
+
+body:has(#two-fa.expand) {
+    overflow: hidden;
+}
+
+#bookmark-container:has(#two-fa.expand) .container {
+    opacity: 0;
+    visibility: hidden;
+}
+
+#two-fa-icon {
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    width: 30px;
+    height: 30px;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1);
+    z-index: 999;
+}
+
+#two-fa.expand #two-fa-icon {
+    left: 25px;
+    top: 15px;
+}
+
+#two-fa-content {
+    opacity: 0;
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+#two-fa.expand #two-fa-content {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* Header */
+.header {
+    padding: 0 20px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    height: 60px;
+}
+
+.title {
+    position: absolute;
+    left: 75px;
+    font-weight: 700;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.header-actions {
+    position: absolute;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.header-actions svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Content Area */
+.content {
+    flex: 1;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+#loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 490px;
+    background: rgb(255, 255, 255);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+#loading.active {
+    opacity: 1;
+}
+
+#login-view {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    z-index: 5;
+}
+
+.login-icon {
+    width: 120px;
+    height: 120px;
+    background: #d3ebff;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    color: var(--primary);
+}
+
+.login-icon svg {
+    width: 50px;
+    height: 50px;
+}
+
+input.pass-input {
+    width: 60%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    font-size: 16px;
+}
+
+/* Thêm vào file CSS */
+.error-msg {
+    color: #ff4e4e;
+    /* Màu đỏ */
+    font-size: 13px;
+    margin-top: 10px;
+    /* Cách nút login một chút */
+    min-height: 18px;
+    /* Giữ chỗ để không bị giật layout */
+    text-align: center;
+    display: none;
+    /* Ẩn mặc định */
+}
+
+.btn {
+    padding: 10px 20px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.otp-item {
+    position: relative;
+    height: 90px;
+    padding: 12px 15px;
+    box-sizing: border-box;
+    margin: 0 10px 10px 10px;
+    border: 1px solid #eee;
+    border-radius: 40px;
+    corner-shape: squircle;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.otp-item:last-child {
+    margin-bottom: 0px;
+}
+
+.icon-container {
+    position: absolute;
+    left: 22px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    /* Cắt phần thừa nếu ảnh vuông */
+}
+
+.icon-container.custom-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.service-name {
+    position: absolute;
+    top: 10px;
+    left: 95px;
+    font-size: 16px;
+    color: #555;
+    font-weight: 500;
+}
+
+.account-name {
+    position: absolute;
+    top: 33px;
+    left: 95px;
+    font-size: 11px;
+    color: #999;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 140px;
+}
+
+.otp-code {
+    position: absolute;
+    bottom: 5px;
+    left: 95px;
+    font-size: 30px;
+    color: var(--primary);
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-family: monospace;
+    transition: all 0.3s ease;
+}
+
+/* Pie Timer */
+.pie-timer {
+    position: absolute;
+    bottom: 35px;
+    right: 15px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #e9e9e9;
+    background-image: conic-gradient(var(--primary) var(--deg), transparent 0);
+    opacity: 1;
+}
+
+.show-edit .pie-timer {
+    opacity: 0;
+}
+
+/* Edit Controls */
+.edit-controls {
+    position: absolute;
+    visibility: hidden;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.show-edit .edit-controls {
+    visibility: visible;
+}
+
+.edit-controls>div {
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.move-btn {
+    width: 23px;
+    height: 23px;
+}
+
+.move-btn svg {
+    width: 14px;
+    height: 14px;
+    opacity: 0.5;
+}
+
+#delete-otp-btn {
+    width: 30px;
+    height: 30px;
+}
+
+#delete-otp-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.toolbar {
+    height: 60px;
+    padding: 10px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.tool-btn {
+    background: none;
+    border: none;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.tool-btn svg {
+    width: 23px;
+    height: 23px;
+    opacity: 0.6;
+}
+
+#logout {
+    transform: translate3d(0, 0, 0);
+}
+
+#scan-menu {
+    position: absolute;
+    bottom: 65px;
+    left: 170px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    flex-direction: column;
+    z-index: 100;
+}
+
+.scan-option {
+    width: 130px;
+    height: 50px;
+    padding: 12px 15px;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+}
+
+.scan-option svg {
+    width: 25px;
+    height: 25px;
+    opacity: 0.6;
+}
+
+.scan-option:first-child {
+    border-bottom: 1px solid #e8e8e8;
+}
+
+#toast {
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    z-index: 200;
+}
+
+/* Camera Modal */
+#camera-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 20;
+    display: none;
+    flex-direction: column;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.close-cam {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: white;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    z-index: 21;
+}
+
+#file-input {
+    display: none;
+}

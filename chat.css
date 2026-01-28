@@ -1,0 +1,450 @@
+#chat {
+  position: absolute;
+  top: 0px;
+  right: 80px;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  background-color: white;
+  z-index: 20;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+#chat.active {
+  top: -40px;
+  right: 0px;
+  width: 340px;
+  height: 445px;
+  border-radius: 50px;
+  corner-shape: squircle;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1);
+  cursor: default;
+}
+
+#bookmark-container:has(#chat.active) .container {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#bookmark-container:has(#chat.active) #two-fa {
+  opacity: 0;
+  visibility: hidden;
+}
+
+body:has(#chat.active) {
+  overflow: hidden;
+}
+
+#chat-icon {
+  position: absolute;
+  top: 17px;
+  left: 15.5px;
+  width: 31px;
+  height: 31px;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.5s ease;
+  z-index: 5;
+}
+
+#chat.active #chat-icon {
+  opacity: 0;
+  visibility: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- 3. CHAT LAYOUT --- */
+.chat-content-area {
+  position: absolute;
+  bottom: 70px;
+  left: 10px;
+  width: 320px;
+  height: 375px;
+  padding: 10px 0 15px 0;
+  box-sizing: border-box;
+  border-bottom-right-radius: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+  z-index: 10;
+}
+
+.chat-toolbar {
+  position: absolute;
+  width: 320px;
+  bottom: 10px;
+  right: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
+  gap: 15px;
+  background: #F0F4F9;
+  /* Tăng độ mờ chút để dễ đọc text */
+  border-radius: 30px;
+  /* Giảm radius chút để khi ô to ra không bị xấu */
+  z-index: 30;
+  transition: all 0.3s ease;
+}
+
+#chat:not(.active) .chat-toolbar {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* 1. Khung chứa tin nhắn gốc của bạn */
+.message-box {
+  position: relative;
+  max-width: 300px;
+  padding: 10px 18px;
+  /* Tăng nhẹ padding trên dưới để Markdown thoáng hơn */
+  box-sizing: border-box;
+  border-radius: 50px;
+  corner-shape: squircle;
+  background: rgb(211, 227, 253);
+  font-size: 16px;
+  line-height: 1.5;
+  word-wrap: break-word;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* 2. ÉP BUỘC TẤT CẢ TEXT TRONG MESSAGE BOX PHẢI MÀU TRẮNG */
+.message-box,
+.message-box *,
+.message-box .text-content *,
+.message-box a {
+  color: #000000 !important;
+  text-decoration-color: #000000;
+}
+
+/* 3. ĐỊNH DẠNG CẤU TRÚC MARKDOWN (Để hiển thị đúng list, header...) */
+.text-content.markdown-body {
+  font-family: inherit;
+}
+
+/* Loại bỏ margin thừa của thẻ p cuối cùng để không làm hở chân chat */
+.text-content.markdown-body p:last-child {
+  margin: 0;
+}
+
+/* Căn chỉnh danh sách (ul, ol) */
+.text-content.markdown-body ul,
+.text-content.markdown-body ol {
+  padding-left: 25px;
+  /* Để hiện dấu chấm tròn/số */
+  margin: 8px 0;
+}
+
+/* Căn chỉnh các tiêu đề (h1, h2, h3...) */
+.text-content.markdown-body h1,
+.text-content.markdown-body h2,
+.text-content.markdown-body h3 {
+  margin-top: 12px;
+  margin-bottom: 8px;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+/* Định dạng khối code (nếu có) */
+.text-content.markdown-body code {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.text-content.markdown-body pre {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 10px 0;
+}
+
+/* Link */
+.text-content.markdown-body a {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+.text-content.markdown-body a:hover {
+  opacity: 1;
+}
+
+/* Blockquote (trích dẫn) */
+.text-content.markdown-body blockquote {
+  border-left: 4px solid rgba(255, 255, 255, 0.3);
+  margin: 0;
+  padding-left: 15px;
+  font-style: italic;
+}
+
+.btn-icon {
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.btn-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: #ffffff;
+}
+
+.text-area {
+  min-height: 40px;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+
+/* CSS cho Textarea mới */
+.text-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: rgb(26, 26, 26);
+  font-size: 16px;
+  padding: 0;
+  /* Bỏ padding mặc định của textarea */
+
+  /* Các thuộc tính quan trọng để resize */
+  resize: none;
+  /* Tắt nút kéo giãn thủ công ở góc */
+  overflow: hidden;
+  /* Ẩn thanh cuộn khi đang gõ ít dòng */
+  min-height: 24px;
+  /* Chiều cao 1 dòng */
+  max-height: 500px;
+  /* Giới hạn chiều cao tối đa (khoảng 6-7 dòng) */
+  line-height: 1.5;
+  font-family: inherit;
+  z-index: 1;
+}
+
+.text-input::placeholder {
+  color: rgb(132, 132, 132);
+}
+
+.text-input:focus {
+  outline: none;
+}
+
+.chat-image,
+.chat-video {
+  max-width: 320px;
+  max-height: 150px;
+  border-radius: 50px;
+  corner-shape: squircle;
+  display: block;
+}
+
+.message-box:has(.chat-image),
+.message-box:has(.chat-video) {
+  padding: 0px;
+  background: transparent;
+}
+
+.chat-file {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+
+.file-icon {
+  flex-shrink: 0;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Thêm vào file CSS */
+.file-icon img.svg-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.file-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.file-name {
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.file-size {
+  font-size: 14px;
+  color: #171717;
+}
+
+.delete-btn {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 30px;
+  height: 30px;
+  background: #ff0400;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  z-index: 5;
+  transition: all 0.3s ease;
+}
+
+.message-box:hover .delete-btn {
+  opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+
+/* --- TOAST NOTIFICATION --- */
+#toast-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  /* Đẩy xuống một chút để trồi lên */
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-size: 14px;
+  z-index: 40;
+
+  /* Transition */
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1);
+}
+
+#toast-container.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  /* Trồi lên vị trí chuẩn */
+}
+
+/* --- LOADING OVERLAY --- */
+#loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+#loading-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #e5e7eb;
+  border-top: 3px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 0.5s linear infinite;
+}
+
+/* Thêm style cho chữ */
+#loading-text {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  animation: pulse 0.5s infinite;
+}
+
+#cancel-btn {
+  padding: 15px 30px;
+  background-color: rgba(255, 255, 255, 0.6);
+  color: #040404;
+  border-radius: 20px;
+  border: none;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.5;
+  }
+}
