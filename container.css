@@ -99,7 +99,7 @@ body {
   align-items: center;
 }
 
-.bookmark-avatar svg {
+.bookmark-avatar svg, .bookmark-avatar img {
   width: 45px;
   height: 45px;
 }
